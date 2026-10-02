@@ -1,0 +1,36 @@
+.slick-slider .slick-slide {
+    overflow:hidden;
+    /* padding-left: 0px;
+    padding-right: 0px */
+}
+.slick-slider .slick-dots li button:not(:hover):not(:active),
+.slick-slider .slick-next:not(:hover):not(:active),
+.slick-slider .slick-prev:not(:hover):not(:active){
+    background-color:transparent
+}
+.slick-slider .slick-next:before,
+.slick-slider .slick-prev:before {
+    color:#000;
+}
+.slick-slider.alignfull .slick-next,
+.slick-slider.alignfull .slick-prev {
+    z-index:1
+}
+.slick-slider.alignfull .slick-prev {
+    left:25px;
+}
+.slick-slider.alignfull .slick-next {
+    right:25px;
+}
+.slick-slider .wp-block-cover,
+.slick-slider .wp-block-image {
+    margin-bottom:0;
+}
+.slick-slider .wp-block-cover.aligncenter,
+.slick-slider .wp-block-image.aligncenter {
+    margin-left:auto!important;
+    margin-right:auto!important;
+}
+.is-layout-flex .slick-slider {
+    width:100%;
+}

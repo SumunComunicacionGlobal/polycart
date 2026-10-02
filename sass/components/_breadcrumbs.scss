@@ -1,0 +1,12 @@
+.rank-math-breadcrumb,
+.breadcrumb,
+.wp-block-breadcrumbs {
+    font-size: var(--wp--preset--font-size--caption);
+    text-transform: uppercase;
+    color: var(--wp--preset--color--foreground-medium);
+
+    a {
+        text-decoration: none;
+        color: var(--wp--preset--color--foreground-medium);
+    }
+}

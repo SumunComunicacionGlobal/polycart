@@ -1,0 +1,93 @@
+@use '../abstracts/mixins' as *;
+
+a.stretched-link, .stretched-link > a {
+    position: initial !important;
+
+    &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        pointer-events: auto;
+        content: "";
+        background-color: rgba(0,0,0,0);
+    } 
+}
+
+.column-reverse-mobile {
+    @media ($below-tablet) {
+        flex-direction: column-reverse;
+    }
+}
+
+.column-reverse-desktop {
+    @media ($above-tablet) {
+        flex-direction: column-reverse;
+    }
+}
+
+.row-reverse-mobile {
+    @media ($below-tablet) {
+        flex-direction: row-reverse;
+    }
+}
+
+.row-reverse-desktop {
+    @media ($above-tablet) {
+        flex-direction: row-reverse;
+    }
+}
+
+.wp-block-columns.is-style-reverse-desktop {
+    @media ($above-mobile) {
+        flex-direction: row-reverse;
+    }
+}
+
+.mt-0 {
+    margin-block-start: 0;
+}
+
+.mt-1 {
+    margin-block-start: var(--wp--preset--spacing--10);
+    margin-top: var(--wp--preset--spacing--10);
+}
+
+.mt-2 {
+    margin-block-start: var(--wp--preset--spacing--20);
+    margin-top: var(--wp--preset--spacing--20);
+}
+
+.mt-3 {
+    margin-block-start: var(--wp--preset--spacing--30);
+    margin-top: var(--wp--preset--spacing--30);
+}
+
+.mb-1 {
+    margin-block-end: var(--wp--preset--spacing--10);
+}
+
+.mb-2 {
+    margin-block-end: var(--wp--preset--spacing--20);
+}
+
+.mb-3 {
+    margin-block-end: var(--wp--preset--spacing--30);
+}
+
+.d-z-index-2 {
+    z-index: 2;
+    position: relative;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+@media ($above-laptop) {
+    :where(:not(#masthead)) .blur-background {
+        backdrop-filter: blur(8px);
+    }
+}

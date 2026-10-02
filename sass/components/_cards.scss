@@ -1,0 +1,183 @@
+@use '../abstracts/mixins' as *;
+
+.is-style-card-line,
+.is-style-card-line-number {
+
+    position: relative;
+    padding: var(--wp--preset--spacing--20);
+    border-top: 1px solid var(--wp--preset--color--neutral-30);
+    border-left: 1px solid var(--wp--preset--color--neutral-30);
+    border-top-left-radius: var(--wp--custom--border-radius--1);
+
+    &:before {
+        display: block;
+        position: absolute;
+        width: 1rem;
+        height: 1rem;
+        content: "";
+        background-color: var(--wp--preset--color--primary);
+        right: -.5rem;
+        top: -.5rem;
+        mask-image: url('./assets/icons/dot.svg');
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        mask-position: center;
+    }
+}
+
+.is-style-card-line-number {
+    padding-top: var(--wp--preset--spacing--80);
+    border-bottom: 1px solid;
+    border-color: var(--wp--preset--color--primary);
+    border-bottom-left-radius: var(--wp--custom--border-radius--1);
+
+    > *:first-child {
+        position: absolute;
+        top: -2.25rem;
+        left: -0.25rem;
+        width: 4.5rem;
+        height: 4.5rem;
+        background-color: var(--wp--preset--color--primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        mask-image: url('./assets/icons/dot-horizontal.svg');
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        mask-position: center;
+    }
+
+}
+
+.product-card-meta {
+    gap: var(--wp--custom--layout--gap-small);
+    justify-content: space-between;
+
+    .product-card-meta__item {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: var(--wp--custom--layout--gap-x-small);
+    }
+
+    .product-card-meta__icon {
+        display: flex;
+        align-items: center;
+        
+        svg {
+            color: var(--wp--preset--color--primary-80);
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+
+    .product-card-meta__value {
+        font-size: var(--wp--preset--font-size--small);
+    }
+
+    .product-card-meta__left,
+    .product-card-meta__right {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--wp--custom--layout--gap-small);
+    }
+}
+
+.card-top-left-badges {
+    position: absolute;
+    top: var(--wp--preset--spacing--10);
+    left: var(--wp--preset--spacing--10);
+    z-index: 1;
+}
+
+.product-card-meta__color {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.product-features {
+    margin: var(--wp--preset--spacing--40) 0;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.is-layout-grid {
+        grid-template-columns: repeat( auto-fill, minmax(min(22rem, 100%), 1fr));
+        container-type: inline-size;
+        gap: var(--wp--custom--layout--gap-small);
+
+        &.as-layout-stack {
+            grid-template-columns: 1fr;
+        }
+    }
+
+}
+
+.product-feature {
+    background-color: var(--wp--preset--color--background);
+    border: 1px solid var(--wp--preset--color--neutral-20);
+    border-radius: var(--wp--custom--border-radius--05);
+    padding: var(--wp--preset--spacing--05);
+
+    &__inner {
+        display: flex;
+        gap: var(--wp--custom--layout--gap-small);
+
+        @media ($below-mobile) {
+            flex-direction: column;
+        }
+    }
+
+    &__title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--wp--custom--layout--gap-small);
+        margin-bottom: var(--wp--preset--spacing--05);
+    }
+
+    &__thumbnail {
+        flex: 0 0 30%;
+        max-width: 256px;
+
+        img {
+            border-radius: var(--wp--custom--border-radius--05);
+        }
+    }
+
+    &__title {
+        font-weight: bold;
+    }
+
+    &__content {
+        flex-grow: 1;
+        font-size: var(--wp--preset--font-size--small);
+    }
+
+    &__tag {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: .25em;
+        font-size: var(--wp--preset--font-size--caption);
+
+        &::before {
+            content: "";
+            display: block;
+            left: 0;
+            height: .75em;
+            width: .75em;
+            mask-image: url(./assets/icons/dot.svg);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            background-color: var(--wp--preset--color--primary);
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "smn/product-data",
+  "version": "1.0.0",
+  "title": "Product data",
+  "category": "theme",
+  "icon": "list-view",
+  "description": "Muestra todos los campos del grupo ACF del producto actual en formato de datos.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js"
+}

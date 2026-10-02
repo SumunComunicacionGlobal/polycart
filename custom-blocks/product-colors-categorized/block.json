@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "smn/product-colors-categorized",
+  "version": "1.0.0",
+  "title": "Product colors by category",
+  "category": "theme",
+  "icon": "art",
+  "description": "Muestra los colores disponibles del producto actual, desglosados por categoría.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js"
+}

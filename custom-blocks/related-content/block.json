@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "smn/related-content",
+  "version": "1.0.0",
+  "title": "Contenido relacionado",
+  "category": "theme",
+  "icon": "admin-links",
+  "description": "Muestra artículos o productos relacionados por categoría.",
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

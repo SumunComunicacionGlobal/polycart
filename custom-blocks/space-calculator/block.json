@@ -1,0 +1,16 @@
+{
+    "name": "smn/space-calculator",
+    "title": "Calculadora de espacio",
+    "style": "file:./style.css",
+    "category": "media",
+    "icon": "calculator",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "space-calculator.php"
+    },
+    "supports": {
+        "anchor": true,
+        "customClassName": true,
+        "html": false
+    }
+}

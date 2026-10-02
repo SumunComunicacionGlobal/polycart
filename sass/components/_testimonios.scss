@@ -1,0 +1,98 @@
+
+.testimonio-item {
+    padding: var(--wp--preset--spacing--10);
+    border-radius: var(--wp--preset--border-radius--1);
+    background-color: var(--wp--preset--color--neutral-90);
+    font-size: 1rem;
+
+    .wp-block-buttons {
+        margin-top: var(--wp--preset--spacing--20);
+        justify-content: flex-end;
+
+        .wp-block-button__link {
+            font-size: var(--wp--preset--font-size--small);
+            border: 0;
+            padding-right: 0;
+        }
+
+    }
+
+}
+
+.testimonio-quote-icon svg {
+    width: 3.3rem;
+    height: 3rem;
+}
+
+.testimonio-excerpt p {
+    margin-top: 0;
+}
+
+.testimonio-meta {
+    display: flex;
+    margin-top: var(--wp--preset--spacing--20);
+}
+
+.testimonio-thumb {
+    flex: 0 0 3rem;
+    object-fit: cover;
+    margin-right: var(--wp--preset--spacing--10);
+
+    img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
+.testimonio-title {
+    font-weight: bold;
+}
+
+.testimonio-author {
+    font-size: var(--wp--preset--font-size--small);
+    color: var(--wp--preset--color--text-medium);
+}
+
+.testimonios-modal-bg {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonios-modal {
+    background-color: var(--wp--preset--color--neutral-80);
+    margin: 10vh auto;
+    max-width: 800px;
+    width: 90%;
+    padding: 40px 0 var(--wp--preset--spacing--20) var(--wp--preset--spacing--40);
+    border-radius: var(--wp--preset--border-radius--1);
+    position: relative;
+}
+
+.testimonios-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#testimonios-modal-header {
+    padding-bottom: var(--wp--preset--spacing--10);
+}
+
+#testimonios-modal-content {
+    overflow-y: auto;
+    max-height: 60vh;
+    padding-left: var(--wp--preset--spacing--10);
+    padding-right: var(--wp--preset--spacing--40);
+}

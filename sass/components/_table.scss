@@ -1,0 +1,91 @@
+.wp-block-table {
+	border: 1px solid var(--wp--preset--color--neutral-30);
+	border-radius: var(--wp--custom--border-radius--1);
+	background-color: var(--wp--preset--color--background);
+	overflow: hidden; // clip cell borders inside the rounded container
+
+	table {
+		border-collapse: collapse;
+	}
+
+    th,
+    td {
+        border-color: var(--wp--preset--color--neutral-30);
+        padding-top: var(--wp--preset--spacing--10);
+        padding-bottom: var(--wp--preset--spacing--10);
+        vertical-align: middle; // centra el contenido de la celda respecto a la fila
+
+        img {
+            display: inline-block;
+            vertical-align: middle; // alinea la imagen con el texto en línea
+            margin-right: var(--wp--preset--spacing--05);
+
+            &:not([src*=".svg"]) {
+                border-radius: var(--wp--custom--border-radius--05);
+            }
+
+        }
+    }
+
+    thead {
+        border-bottom: 1px solid var(--wp--preset--color--neutral-30);
+
+        th {
+            text-align: left;
+            font-weight: 400;
+            padding-top: var(--wp--preset--spacing--20);
+            padding-bottom: var(--wp--preset--spacing--20);
+            background-color: var(--wp--preset--color--neutral-white);
+        }
+    }
+
+	tr:first-child > th,
+	tr:first-child > td {
+		border-top: 0;
+	}
+
+	tr:last-child > th,
+	tr:last-child > td {
+		border-bottom: 0;
+	}
+
+	th:first-child,
+	td:first-child {
+		border-left: 0;
+	}
+
+	th:last-child,
+	td:last-child {
+		border-right: 0;
+	}
+}
+
+// Bloque table con estilo "comparative-table": primera columna fija, resto deslizable
+.wp-block-table.is-style-comparative-table {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+
+	table {
+		width: auto;
+		min-width: 100%;
+		border-spacing: 0;
+	}
+
+	th,
+	td {
+		white-space: nowrap;
+
+		&:first-child {
+			position: sticky;
+			left: 0;
+			z-index: 1;
+			background-color: var(--wp--preset--color--background, #fff);
+		}
+
+        &:not(:first-child) {
+            border-right: none;
+            border-left: 0;
+        }
+	}
+}
+

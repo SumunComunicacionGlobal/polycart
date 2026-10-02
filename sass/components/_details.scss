@@ -1,0 +1,98 @@
+details {
+    position: relative;
+    display: block;
+    max-height: 5rem;
+    transition: .5s ease-in-out;
+    transition-behavior: allow-discrete;
+    padding: var(--wp--preset--spacing--10) 0;
+    border-bottom: 1px solid var(--wp--preset--color--neutral-30);
+
+    summary {
+        display: block;
+        font-weight: bold;
+        position: relative;
+        padding: 0 var(--wp--preset--spacing--30);
+
+        + * {
+            margin-top: var(--wp--preset--spacing--20) !important;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: block;
+            height: 1.5rem;
+            width: 1.5rem;
+            mask-image: url(./assets/icons/plus.svg);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            background-color: var(--wp--preset--color--primary-90);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 1rem;
+            width: 1rem;
+            mask-image: url(./assets/icons/dot.svg);
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            background-color: var(--wp--preset--color--primary);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .wp-block-details--content {
+        //animation: scaleUp 2s ease-in-out forwards; 
+        border: 1px solid red;
+    }
+
+    &[open]   {
+        max-height: 100vh;
+        /* calc-size() function allows transition to height: auto; */
+        //block-size: calc-size(auto);
+
+        .wp-block-details--content {
+            animation: scaleUp 0.3s ease-in-out forwards; 
+        }
+
+        summary {
+
+            &::after {
+                mask-image: url(./assets/icons/minus.svg);
+            }
+        }
+    }
+}
+
+
+@keyframes scaleUp {
+    from {
+        display: none;
+        opacity: 0;
+    }
+    to {
+        display: block;
+        opacity: 1;
+    }
+}
+
+.starting-style {
+    animation: scaleUp 0.3s ease-in-out forwards;
+}
+
+
+details[open] span::before {
+    rotate: 90deg;
+    transition: rotate 200ms ease-out;
+}

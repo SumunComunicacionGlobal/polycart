@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "smn/product-card-meta",
+  "version": "1.0.0",
+  "title": "Product card meta",
+  "category": "theme",
+  "icon": "index-card",
+  "description": "Bloque dinámico para metadatos del producto.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js"
+}

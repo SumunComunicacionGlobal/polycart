@@ -1,0 +1,74 @@
+#rank-math-faq .rank-math-list {
+
+    .rank-math-list-item {
+        border: 0;
+        border-radius: 0;
+        border-bottom: 1px solid var(--wp--preset--color--neutral-30);
+        margin-bottom: 0;
+
+        .rank-math-question {
+            position: relative;
+            padding-right: var(--wp--preset--spacing--30);
+            padding-left: var(--wp--preset--spacing--30);
+            background-color: transparent;
+            font-size: var(--wp--preset--font-size--body);
+            
+            &:hover {
+                cursor: pointer;
+            }
+            
+            &::after {
+                content: "";
+                height: 1.5rem;
+                width: 1.5rem;
+                mask-image: url(./assets/icons/plus.svg);
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                background-color: var(--wp--preset--color--primary-90);
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                height: 1rem;
+                width: 1rem;
+                mask-image: url(./assets/icons/dot.svg);
+                mask-size: contain;
+                mask-repeat: no-repeat;
+                background-color: var(--wp--preset--color--primary);
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &.rm-faq-question-active {
+                border-bottom: 0;
+            }
+        }
+
+        .rank-math-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease-in-out;
+            color: var(--wp--preset--color--text-medium);
+        }
+
+        &.active {
+
+            .rank-math-answer {
+                max-height: 100vh;
+            }
+    
+            .rank-math-question::after {
+                mask-image: url(./assets/icons/minus.svg);
+            }
+        }
+    }
+    
+    h2.rank-math-question  {
+        font-size: var(--wp--preset--font-size--body);
+        font-family: var(--wp--preset--font-family--font-main);
+        font-weight: 700;
+    }
+}
+

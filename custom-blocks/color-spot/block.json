@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "smn/color-spot",
+  "version": "1.0.0",
+  "title": "Color Spot",
+  "category": "theme",
+  "icon": "marker",
+  "description": "Muestra un círculo con el color definido en el campo ACF color_hexadecimal.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js"
+}

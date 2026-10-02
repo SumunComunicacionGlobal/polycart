@@ -1,0 +1,80 @@
+div.contenedor-mockups-web {
+    text-align: center;
+    padding: 30px 20px 0;
+}
+div.screendiv {
+    display: inline-block;
+    position: relative;
+    width: 70%;
+    max-width: 540px;
+}
+.dummy {
+    margin-top: 100%;
+}
+.screenpack{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+ 
+figure.screenshot {
+    position: absolute;
+    height: 53%;
+    z-index: 100;
+    top: 4.2%;
+    width: 95%;
+    overflow-y: scroll;
+    margin-left: 3.8%;
+    padding-right: 2.7%;
+    box-sizing: border-box;
+}
+.screen-overlay {
+    position:absolute;
+    z-index: 100;
+    background: url('./assets/img/mockup-imac.png') no-repeat;
+    background-size: contain;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+figure.screenshot img { 
+    margin:0 !important; 
+    padding:0;
+}
+.screen-overlay span {
+    color: #fff; 
+    font-size: 0.75em; 
+    float: right; 
+    margin-right: 3%; 
+    font-style: italic; 
+}
+.scroll-notice {
+    background-color: orange;
+    width: 70px;
+    height: 70px;
+    top: -30px;
+    left: -30px;
+    position: absolute;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 101;
+}
+.scroll-notice.count {
+    top: auto;
+    bottom: 30%;
+    background-color: lightblue;
+    display: table;
+    width: 40px;
+    height: 40px;
+}
+.scroll-notice.count .contador-web {
+    display: table-cell;
+    vertical-align: middle;
+}
+.scroll-notice i {
+    margin-top: 30%;
+    color: #ffffff;
+}

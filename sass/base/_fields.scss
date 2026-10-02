@@ -1,0 +1,94 @@
+.wpcf7  {
+
+	p {
+		margin-bottom: var(--wp--preset--spacing--05);
+	}
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	border-radius: var(--wp--custom--border-radius--2);
+	border: 1px solid var(--wp--preset--color--neutral-30);
+	background-color: var(--wp--preset--color--neutral-white);
+	line-height: var(--wp--custom--line-height--headings);
+	padding: 12px var(--wp--preset--spacing--10);
+	width: 100%;
+	margin-top: .25rem;
+
+	&:focus {
+		//outline-color: var(--wp--preset--color--primary);
+	}
+
+	&::placeholder {
+		color: var(--wp--preset--color--text-medium);
+		opacity: 1; /* Firefox */
+		font-size: var(--wp--preset--font-size--small);
+	}
+	  
+	&::-ms-input-placeholder { /* Edge 12 -18 */
+		color: inherit;
+	}
+
+}
+
+textarea {
+	border-radius: var(--wp--custom--border-radius--1);
+}
+
+select {
+	// border-radius: 4px;
+	border: 2px solid;
+	padding: 7px var(--wp--preset--spacing--10);
+	background-color: transparent;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+textarea {
+	width: 100%;
+}
+
+button[type="submit"], input[type="submit"] {
+	background-color: var(--wp--preset--color--primary);
+	border-color: var(--wp--preset--color--primary);
+	border-radius: var(--wp--custom--border-radius--rounded);
+	padding: calc(0.667em + 2px) calc(1.333em + 2px);
+	color: var(--wp--preset--color--black);
+	font-weight: bold;
+	display: block;
+	width: 100%;
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	&:after {
+		content: '';
+		display: inline-block;
+		width: 24px;
+		height: 24px;
+		margin-left: .5rem;
+		background-color: currentColor; /* Esto asegura que el color del SVG coincida con el color del texto */
+		mask-image: url(./assets/icons/arrow-right.svg);
+		mask-size: cover;
+		mask-repeat: no-repeat;
+		transition: padding-left 0.3s ease;
+	}
+}
+

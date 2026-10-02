@@ -1,0 +1,87 @@
+.space-calculator__tablist {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--05);
+  margin-bottom: var(--wp--preset--spacing--40);
+  background-color: var(--wp--preset--color--neutral-white);
+  border: 1px solid var(--wp--preset--color--neutral-30);
+  border-radius: var(--wp--preset--border-radius--rounded);
+  padding: 2px;
+}
+.space-calculator__tab {
+  transition: background-color 0.3s ease;
+  background: transparent;
+  color: var(--wp--preset--color--text-medium);
+  border: 0;
+  border-radius: var(--wp--preset--border-radius--rounded);
+  cursor: pointer;
+  padding: var(--wp--preset--spacing--05) var(--wp--preset--spacing--20);
+}
+.space-calculator__tab:hover {
+  background-color: var(--wp--preset--color--neutral-20);
+}
+.space-calculator__tab.is-active {
+  background-color: var(--wp--preset--color--neutral-30);
+  border-color: var(--wp--preset--color--primary-80);
+}
+.space-calculator__tab.is-active:hover {
+  background-color: var(--wp--preset--color--neutral-20);
+}
+.space-calculator__panel {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.space-calculator__panel[hidden] {
+  display: none;
+}
+.space-calculator__panel.is-entering {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .space-calculator__panel {
+    transition: none;
+  }
+}
+.space-calculator__units {
+  border-width: 1px;
+  border-radius: var(--wp--preset--border-radius--1);
+  padding: var(--wp--preset--spacing--20);
+}
+.space-calculator__unit {
+  flex-wrap: nowrap !important;
+  justify-content: space-between;
+}
+.space-calculator__unit:not(:last-child) {
+  margin-bottom: var(--wp--preset--spacing--20);
+}
+.space-calculator__icon svg {
+  width: var(--smn-icon-width);
+  height: auto;
+  color: var(--wp--preset--color--primary-80);
+}
+.space-calculator__form {
+  margin-top: var(--wp--preset--spacing--20);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--wp--preset--spacing--10);
+}
+.space-calculator__field, .space-calculator__result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.space-calculator__input {
+  max-width: 10rem;
+  text-align: center;
+}
+.space-calculator__result-value {
+  background-color: var(--wp--preset--color--primary) !important;
+  border: 0 !important;
+  font-weight: bold;
+  text-align: center;
+}
+.space-calculator .is-content-justification-space-between {
+  justify-content: space-between;
+}

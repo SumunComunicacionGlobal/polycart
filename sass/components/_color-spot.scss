@@ -1,0 +1,63 @@
+@use '../abstracts/mixins' as *;
+
+.color-spot__circle {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+
+    @media ($above-mobile) {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.product-colors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--wp--preset--spacing--10);
+    border-top: 1px solid var(--wp--preset--color--neutral-30);
+    border-bottom: 1px solid var(--wp--preset--color--neutral-30);
+    padding: var(--wp--preset--spacing--20) 0;
+
+    .product-colors__label {
+        text-transform: uppercase;
+        font-size: var(--wp--preset--font-size--caption);
+    }
+
+    .color-spot__circle {
+        @media ($above-mobile) {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+}
+
+.product-colors-categorized {
+
+    &__label {
+        font-size: var(--wp--preset--font-size--heading-6);
+    }
+
+    &__colors {
+        border-bottom: 0;
+        padding-top: var(--wp--preset--spacing--10);
+        
+        .product-colors {
+
+            &__color-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--wp--preset--spacing--05);
+            }
+
+            &__color-label {
+                font-size: var(--wp--preset--font-size--caption);
+            }
+
+        }
+    }
+}

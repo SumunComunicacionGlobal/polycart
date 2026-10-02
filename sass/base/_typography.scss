@@ -1,0 +1,82 @@
+.wp-block-post-title a {
+	text-decoration: none;
+}
+
+[class*="has-heading-"][class*="-font-size"] {
+    line-height: var(--wp--custom--line-height--headings);
+    font-family: var(--wp--preset--font-family--font-heading);
+}
+
+.has-medium-font-size {
+    line-height: var(--wp--custom--line-height--headings);
+}
+
+.has-display-font-size,
+.has-heading-1-font-size {
+    line-height: var(--wp--custom--line-height--tiny) !important;
+}
+
+.has-white-background-color {
+    color: var(--wp--preset--color--neutral-white);
+}
+
+.fw-bold {
+    font-weight: bold;
+}
+
+.is-style-badge {
+    border: 1px solid var(--wp--preset--color--primary);
+    background-color: var(--wp--preset--color--primary-10);
+    border-radius: 1000px;
+    padding: .25em var(--wp--preset--spacing--05);
+    width: fit-content;
+    font-size: var(--wp--preset--font-size--caption);
+    text-transform: uppercase;
+    color: var(--wp--preset--color--foreground);
+    text-decoration: none;
+
+    .badge-icon {
+        color: var(--wp--preset--color--primary);
+        margin-right: 4px;
+
+        svg {
+            width: .5rem;
+            height: .5rem;
+        }
+    }
+
+    .taxonomy-product_tag & {
+        background-color: var(--wp--preset--color--primary);
+
+        .badge-icon {
+            color: var(--wp--preset--color--neutral-white);
+        }
+    }
+
+    .card-top-left-badges.taxonomy-category & {
+        background-color: var(--wp--preset--color--primary);
+
+        .badge-icon {
+            color: var(--wp--preset--color--text);
+        }
+    }
+
+    + .wp-block-heading,
+    + p {
+        margin-top: var(--wp--preset--spacing--10);
+    }
+}
+
+.is-style-eyebrow {
+    font-weight: bold;
+    margin-bottom: var(--wp--preset--spacing--05);
+
+    + * {
+        margin-top: 0;
+        margin-block-start: 0;
+    }
+}
+
+label {
+    font-size: var(--wp--preset--font-size--small);
+}

@@ -1,0 +1,16 @@
+{
+    "name": "smn/product-features",
+    "title": "Características del producto",
+    "style": "file:./style.css",
+    "category": "media",
+    "icon": "appearance",
+    "acf": {
+        "mode": "edit",
+        "renderTemplate": "product-features.php"
+    },
+    "supports": {
+        "anchor": true,
+        "customClassName": true,
+        "html": false
+    }
+}
