@@ -35,7 +35,7 @@ function smn_render_related_content_block( $attributes, $content, $block ) {
 			'taxonomy' => 'product_cat',
 			'badge'    => __( 'Productos', 'polycart' ),
 			'heading'  => __( 'Modelos relacionados', 'polycart' ),
-            'limit'    => 9,
+            'limit'    => 3,
 		),
 	);
 
@@ -86,29 +86,46 @@ function smn_render_related_content_block( $attributes, $content, $block ) {
 		}
 	}
 
-	$term_ids = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
+	$query_args = array(
+		'post_type'           => $post_type,
+		'post_status'         => 'publish',
+		'posts_per_page'      => $config[ $post_type ]['limit'],
+		'post__not_in'        => array( $post_id ),
+		'ignore_sticky_posts' => true,
+		'no_found_rows'       => true,
+	);
+	$related_ids = array();
 
-	if ( is_wp_error( $term_ids ) || empty( $term_ids ) ) {
-		return '';
+	if ( 'product' === $post_type && ( is_singular( 'product' ) || $is_rest_request ) && function_exists( 'get_field' ) ) {
+		$related_ids = array_values(
+			array_diff(
+				array_unique( array_filter( array_map( 'absint', (array) get_field( 'productos_relacionados', $post_id, false ) ) ) ),
+				array( $post_id )
+			)
+		);
 	}
 
-	$related = new WP_Query(
-		array(
-			'post_type'           => $post_type,
-			'post_status'         => 'publish',
-			'posts_per_page'      => $config[ $post_type ]['limit'],
-			'post__not_in'        => array( $post_id ),
-			'ignore_sticky_posts' => true,
-			'no_found_rows'       => true,
-			'tax_query'           => array(
-				array(
-					'taxonomy' => $taxonomy,
-					'field'    => 'term_id',
-					'terms'    => $term_ids,
-				),
+	if ( ! empty( $related_ids ) ) {
+		$query_args['post__in']       = $related_ids;
+		$query_args['orderby']        = 'post__in';
+		$query_args['posts_per_page'] = -1;
+	} else {
+		$term_ids = wp_get_post_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
+
+		if ( is_wp_error( $term_ids ) || empty( $term_ids ) ) {
+			return '';
+		}
+
+		$query_args['tax_query'] = array(
+			array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				'terms'    => $term_ids,
 			),
-		)
-	);
+		);
+	}
+
+	$related = new WP_Query( $query_args );
 
 	if ( ! $related->have_posts() ) {
 		return '';

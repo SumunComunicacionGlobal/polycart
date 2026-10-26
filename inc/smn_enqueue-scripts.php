@@ -61,11 +61,12 @@ function theme_gsap_script(){
     wp_enqueue_script( 'gsap-js', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js', array(), false, true );
     // ScrollTrigger - with gsap.js passed as a dependency
     wp_enqueue_script( 'gsap-st', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js', array('gsap-js'), false, true );
+	wp_enqueue_script( 'gsap-split-text', 'https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js', array('gsap-js'), false, true );
     // Your animation code file - with gsap.js and gsap-st passed as a dependency
-    wp_enqueue_script( 'gsap-js2', get_template_directory_uri() . '/assets/js/gsap.js', array('gsap-js', 'gsap-st'), false, true );
+	wp_enqueue_script( 'gsap-js2', get_template_directory_uri() . '/assets/js/gsap.js', array('gsap-js', 'gsap-st', 'gsap-split-text'), filemtime( get_template_directory() . '/assets/js/gsap.js' ), true );
 }
 
-// add_action( 'wp_enqueue_scripts', 'theme_gsap_script' );
+add_action( 'wp_enqueue_scripts', 'theme_gsap_script' );
 
 
 

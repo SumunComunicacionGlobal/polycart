@@ -1,3 +1,5 @@
+@use '../../sass/abstracts/mixins' as *;
+
 .space-calculator {
 
     &__tablist {
@@ -9,8 +11,13 @@
         margin-bottom: var(--wp--preset--spacing--40);
         background-color: var(--wp--preset--color--neutral-white);
         border: 1px solid var(--wp--preset--color--neutral-30);
-        border-radius: var(--wp--preset--border-radius--rounded);
+        border-radius: 20.2px;
         padding: 2px;
+
+        @media ($below-mobile) {
+            flex-direction: column;
+            width: 100%;
+        }
     }
 
     &__tab {

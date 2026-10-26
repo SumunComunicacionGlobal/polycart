@@ -21,7 +21,7 @@ if ( ! function_exists( 'smn_styles' ) ) :
 		// Register theme stylesheet.
 		$theme_version = wp_get_theme()->get( 'Version' );
 
-		$version_string = is_string( $theme_version ) ? $theme_version : false;
+		$version_string = filemtime( get_template_directory() . '/style.css' );
 		wp_register_style(
 			'smn-style',
 			get_template_directory_uri() . '/style.css',
@@ -35,7 +35,7 @@ if ( ! function_exists( 'smn_styles' ) ) :
 
 endif;
 
-add_action( 'wp_enqueue_scripts', 'smn_styles' );
+add_action( 'wp_enqueue_scripts', 'smn_styles', 999999999 );
 
 
 
@@ -64,3 +64,6 @@ require get_template_directory() . '/inc/template-functions.php';
 
 // Icon collection
 require get_template_directory() . '/inc/smn_icons.php';
+
+// FacetWP customizations
+require get_template_directory() . '/inc/smn_facetwp.php';

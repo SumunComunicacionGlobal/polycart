@@ -1,2 +1,21 @@
 @use '../abstracts/mixins' as *;
 
+.wp-block-navigation__responsive-container-open.wp-block-navigation__responsive-container-open.wp-block-navigation__responsive-container-open {
+    font-size: var(--wp--preset--font-size--small);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    &:after {
+        content: "";
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-color: var(--wp--preset--color--primary-80);
+        mask-image: url('./assets/icons/menu-2.svg');
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+    }
+}

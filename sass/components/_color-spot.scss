@@ -26,6 +26,12 @@
         font-size: var(--wp--preset--font-size--caption);
     }
 
+    .product-colors__colors {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--wp--preset--spacing--10);
+    }
+
     .color-spot__circle {
         @media ($above-mobile) {
             width: 2rem;
@@ -59,5 +65,11 @@
             }
 
         }
+    }
+
+    &__notes {
+        border-top: 1px solid var(--wp--preset--color--neutral-30);
+        padding-top: var(--wp--preset--spacing--10);
+        margin-top: var(--wp--preset--spacing--30);
     }
 }

@@ -60,7 +60,7 @@ function smn_render_product_colors_block( $attributes, $content, $block ) {
     }
 
     return sprintf(
-        '<div %1$s><span class="product-colors__label">%2$s</span>%3$s</div>',
+        '<div %1$s><span class="product-colors__label">%2$s</span><div class="product-colors__colors">%3$s</div></div>',
         get_block_wrapper_attributes( array( 'class' => 'product-colors' ) ),
         esc_html__( 'Colores disponibles:', 'polycart' ),
         implode( '', $items )

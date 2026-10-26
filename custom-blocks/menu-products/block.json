@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "smn/menu-products",
+  "version": "1.0.0",
+  "title": "Productos menú",
+  "category": "theme",
+  "icon": "list-view",
+  "description": "Muestra todo el catálogo de productos.",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js"
+}

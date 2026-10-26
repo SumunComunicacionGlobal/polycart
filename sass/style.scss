@@ -55,6 +55,8 @@ Use it to make something cool, have fun, and share what you've learned.
 @use "components/lists";
 @use "components/marquee";
 @use "components/media-text";
+@use "components/icon";
+@use "components/megamenu";
 @use "components/nav";
 @use "components/pagination";
 @use "components/query";
@@ -65,6 +67,7 @@ Use it to make something cool, have fun, and share what you've learned.
 @use "components/testimonios";
 @use "components/table";
 @use "components/table-of-contents";
+@use "components/file";
 
 
 /*--------------------------------------------------------------
@@ -79,3 +82,4 @@ Use it to make something cool, have fun, and share what you've learned.
 # Plugins
 --------------------------------------------------------------*/
 @use "plugins/_complianz";
+@use "plugins/_facetwp";

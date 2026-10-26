@@ -115,6 +115,13 @@ wp.domReady( () => {
 		},
 	] );
 
+	wp.blocks.registerBlockStyle( 'core/icon', [
+		{
+			name: 'bg-hexagon',
+			label: 'Background Hexagon',
+		},
+	] );
+
 	wp.blocks.registerBlockStyle( 'core/group', [
 		{
 			name: 'group-horizontal-scroll',
@@ -135,6 +142,14 @@ wp.domReady( () => {
 		{
 			name: 'card-line-number',
 			label: 'Card line with number',
+		},
+		{
+			name: 'card-product-category',
+			label: 'Card Categoría Producto',
+		},
+		{
+			name: 'card-plastic',
+			label: 'Card 100% plastico',
 		},
 		{
 			name: 'carousel',

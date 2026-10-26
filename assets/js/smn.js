@@ -6,6 +6,98 @@ window.addEventListener("scroll", function() {
         document.body.classList.remove("scrolled");
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const menuItem = document.querySelector('#menu-desktop-wrapper .menu-item-products');
+    const submenu = document.getElementById('products-submenu');
+
+    if (!menuItem || !submenu) return;
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'products-submenu-toggle';
+    toggle.setAttribute('aria-controls', submenu.id);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let submenuAnimation;
+
+    function setExpanded(expanded, animate = true) {
+        if (toggle.getAttribute('aria-expanded') === String(expanded)) return;
+
+        const wasHidden = submenu.hidden;
+        const currentStyle = getComputedStyle(submenu);
+        const from = {
+            height: wasHidden ? '0px' : submenu.getBoundingClientRect().height + 'px',
+            paddingTop: wasHidden ? '0px' : currentStyle.paddingTop,
+            paddingBottom: wasHidden ? '0px' : currentStyle.paddingBottom,
+            opacity: wasHidden ? 0 : currentStyle.opacity,
+            overflow: 'hidden',
+        };
+
+        if (submenuAnimation) submenuAnimation.cancel();
+        submenuAnimation = null;
+        toggle.setAttribute('aria-expanded', String(expanded));
+        toggle.setAttribute('aria-label', expanded ? 'Cerrar submenu de productos' : 'Abrir submenu de productos');
+        toggle.title = expanded ? 'Cerrar submenu de productos' : 'Abrir submenu de productos';
+        submenu.inert = !expanded;
+
+        if (!animate || reducedMotion.matches) {
+            submenu.hidden = !expanded;
+            return;
+        }
+
+        submenu.hidden = false;
+        const expandedStyle = getComputedStyle(submenu);
+        const to = {
+            height: expanded ? submenu.getBoundingClientRect().height + 'px' : '0px',
+            paddingTop: expanded ? expandedStyle.paddingTop : '0px',
+            paddingBottom: expanded ? expandedStyle.paddingBottom : '0px',
+            opacity: expanded ? 1 : 0,
+            overflow: 'hidden',
+        };
+
+        submenuAnimation = submenu.animate([from, to], {
+            duration: 250,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            fill: 'forwards',
+        });
+        submenuAnimation.onfinish = function() {
+            submenu.hidden = !expanded;
+            submenuAnimation.cancel();
+            submenuAnimation = null;
+        };
+    }
+
+    setExpanded(false, false);
+    submenu.setAttribute('data-products-submenu-ready', '');
+    menuItem.appendChild(toggle);
+
+    toggle.addEventListener('click', function() {
+        setExpanded(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!menuItem.contains(event.target) && !submenu.contains(event.target)) {
+            setExpanded(false);
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+            setExpanded(false);
+            toggle.focus();
+        }
+    });
+
+    document.addEventListener('focusin', function(event) {
+        if (!menuItem.contains(event.target) && !submenu.contains(event.target)) {
+            setExpanded(false);
+        }
+    });
+
+    window.addEventListener('resize', function() {
+        if (!toggle.getClientRects().length) setExpanded(false);
+    });
+});
+
 // Añade botones de scroll a la izquierda y derecha
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".is-style-group-horizontal-scroll-btns").forEach((content) => {

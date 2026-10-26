@@ -18,6 +18,42 @@ add_action( 'init', 'register_acf_blocks' );
 function register_acf_blocks() {
     register_block_type( get_stylesheet_directory() . '/custom-blocks/product-features' );
     register_block_type( get_stylesheet_directory() . '/custom-blocks/space-calculator' );
+    register_block_type( get_stylesheet_directory() . '/custom-blocks/vista-giratoria' );
+}
+
+add_action( 'acf/include_fields', 'smn_register_vista_giratoria_fields' );
+function smn_register_vista_giratoria_fields() {
+    if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+        return;
+    }
+
+    acf_add_local_field_group(
+        array(
+            'key'      => 'group_smn_vista_giratoria',
+            'title'    => 'Bloque: Vista giratoria',
+            'fields'   => array(
+                array(
+                    'key'           => 'field_smn_vista_giratoria_imagenes',
+                    'label'         => 'Imágenes',
+                    'name'          => 'vista_giratoria_imagenes',
+                    'type'          => 'gallery',
+                    'return_format' => 'id',
+                    'preview_size'  => 'thumbnail',
+                    'library'       => 'all',
+                    'mime_types'    => 'jpg,jpeg,png,webp,avif',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param'    => 'block',
+                        'operator' => '==',
+                        'value'    => 'smn/vista-giratoria',
+                    ),
+                ),
+            ),
+        )
+    );
 }
 
 /**
@@ -43,6 +79,12 @@ function smn_register_blocks() {
     register_block_type(
         get_stylesheet_directory() . '/custom-blocks/product-card-meta',
         array( 'render_callback' => 'smn_render_product_card_meta_block' )
+    );
+
+    require_once get_stylesheet_directory() . '/custom-blocks/product-image-gallery/product-image-gallery.php';
+    register_block_type(
+        get_stylesheet_directory() . '/custom-blocks/product-image-gallery',
+        array( 'render_callback' => 'smn_render_product_image_gallery_block' )
     );
 
     // Color Spot Block
@@ -79,6 +121,31 @@ function smn_register_blocks() {
         array( 'render_callback' => 'smn_render_related_content_block' )
     );
 
+    require_once get_stylesheet_directory() . '/custom-blocks/menu-products/menu-products.php';
+    register_block_type(
+        get_stylesheet_directory() . '/custom-blocks/menu-products',
+        array( 'render_callback' => 'smn_render_menu_products_block' )
+    );
+
 }
 
 add_action( 'init', 'smn_register_blocks' );
+
+function smn_register_block_patterns() {
+    if ( WP_Block_Patterns_Registry::get_instance()->is_registered( 'polycart/card-plastic' ) ) {
+        return;
+    }
+
+    register_block_pattern(
+        'polycart/card-plastic',
+        array(
+            'title'         => __( 'Tarjeta 100% plastico', 'polycart' ),
+            'categories'    => array( 'featured' ),
+            'viewportWidth' => 563,
+            'inserter'      => true,
+            'filePath'      => get_theme_file_path( '/patterns/card-plastic.php' ),
+        )
+    );
+}
+
+add_action( 'init', 'smn_register_block_patterns', 9 );

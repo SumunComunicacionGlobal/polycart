@@ -5,6 +5,11 @@
     .wp-block-media-text__content {
         padding: var(--wp--custom--layout--gap) var(--wp--custom--layout--gap-small);
     }
+
+    .wp-block-media-text__media {
+        border-radius: var(--wp--custom--border-radius--1);
+        overflow: hidden;
+    }
     
     // &.has-media-on-the-right {
 

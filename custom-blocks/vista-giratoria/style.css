@@ -1,0 +1,15 @@
+.vista-giratoria {
+	display: grid;
+}
+
+.vista-giratoria__frame {
+	grid-area: 1 / 1;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	transition: none;
+}
+
+.vista-giratoria__frame.is-active {
+	opacity: 1;
+}

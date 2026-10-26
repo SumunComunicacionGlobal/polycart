@@ -55,7 +55,7 @@ function smn_render_product_data_block( $attributes, $content, $block ) {
         $items[] = sprintf(
             '<div class="product-data__item"><span class="product-data__label">%1$s</span><span class="product-data__value">%2$s</span></div>',
             esc_html( $label ),
-            esc_html( $formatted_value . $suffix )
+            $formatted_value . $suffix
         );
     }
 
@@ -121,5 +121,12 @@ function smn_format_product_data_value( $value ) {
         return '';
     }
 
-    return wp_strip_all_tags( $output );
+    $output = str_replace( ' kg', '&nbsp;kg', $output );
+
+    if ( false !== stripos( $output, '<br' ) ) {
+        $output = '<span class="has-small-font-size">' . $output . '</span>';
+    }
+
+    return $output;
+    // return wp_strip_all_tags( $output );
 }

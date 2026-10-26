@@ -29,6 +29,7 @@ function smn_icons_register(): void
 		[ __('Arrow up', 'polycart'), 'arrow-up' ],
 		[ __('Calendar', 'polycart'), 'calendar' ],
 		[ __('Cart', 'polycart'), 'cart' ],
+		[ __('Carts', 'polycart'), 'carts' ],
 		[ __('Chain', 'polycart'), 'chain' ],
 		[ __('Chevron down 2', 'polycart'), 'chevron-down-2' ],
 		[ __('Chevron down', 'polycart'), 'chevron-down' ],
@@ -59,9 +60,11 @@ function smn_icons_register(): void
 		[ __('Tool', 'polycart'), 'tool' ],
 		[ __('Trailer', 'polycart'), 'trailer' ],
 		[ __('Truck', 'polycart'), 'truck' ],
+		[ __('Baskets', 'polycart'), 'stacked-baskets' ],
 		[ __('Volume', 'polycart'), 'volume' ],
 		[ __('Weight', 'polycart'), 'weight' ],
 		[ __('Whell', 'polycart'), 'whell' ],
+		[ __('Area', 'polycart'), 'area' ],
 		[ __('X', 'polycart'), 'x' ],
 	];
 

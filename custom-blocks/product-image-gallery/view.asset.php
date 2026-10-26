@@ -1,0 +1,1 @@
+<?php return array( 'dependencies' => array( 'jquery', 'slick-js' ), 'version' => '1.0.0' );

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "smn/product-image-gallery",
+  "version": "1.0.0",
+  "title": "Product image gallery",
+  "category": "theme",
+  "icon": "format-gallery",
+  "description": "Galeria de imagenes del producto con miniaturas verticales.",
+  "usesContext": ["postId", "postType"],
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "textdomain": "polycart",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style.css"
+}

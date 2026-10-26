@@ -112,7 +112,11 @@
 @media (max-width: 781px) {
     .wp-block-smn-tabs__container {
         &.is-vertical {
-            display: block;
+            display: block !important;
+
+            .wp-block-smn-tab-content {
+                margin-top: var(--wp--custom--layout--gap);
+            }
         }
     }
 }

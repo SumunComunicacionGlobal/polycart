@@ -74,8 +74,8 @@ function smn_render_product_colors_categorized_block( $attributes, $content, $bl
         $notes_html = '';
         if ( ! empty( $notes ) ) {
             $notes_html = sprintf(
-                '<p class="product-colors-categorized__notes">%s</p>',
-                esc_html( $notes )
+                '<div class="product-colors-categorized__notes">%s</div>',
+                wp_kses_post( $notes )
             );
         }
 
@@ -91,9 +91,16 @@ function smn_render_product_colors_categorized_block( $attributes, $content, $bl
         return '';
     }
 
+    $global_notes = get_field( 'colores_notas', $post_id );
+    $global_notes_html = ! empty( $global_notes ) ? sprintf(
+        '<div class="product-colors-categorized__notes">%s</div>',
+        wp_kses_post( $global_notes )
+    ) : '';
+
     return sprintf(
-        '<div %1$s>%2$s</div>',
+        '<div %1$s>%2$s%3$s</div>',
         get_block_wrapper_attributes( array( 'class' => 'product-colors-categorized' ) ),
-        implode( '', $rows )
+        implode( '', $rows ),
+        $global_notes_html
     );
 }

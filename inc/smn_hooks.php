@@ -3,6 +3,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+add_filter( 'term_link', 'smn_product_cat_term_link_to_page', 10, 3 );
+function smn_product_cat_term_link_to_page( $term_link, $term, $taxonomy ) {
+    if ( 'product_cat' !== $taxonomy || empty( $term->slug ) ) {
+        return $term_link;
+    }
+
+    $page = get_page_by_path( $term->slug, OBJECT, 'page' );
+
+    if ( ! $page || 'publish' !== $page->post_status ) {
+        return $term_link;
+    }
+
+    $page_link = get_permalink( $page );
+
+    return $page_link ? $page_link : $term_link;
+}
+
 // Agrega un filtro para el bloque de consulta de WordPress
 // que muestra los posts relacionados en la página de un post y los filtra por categorías
 add_filter('render_block_data', function ($parsed_block) {
@@ -25,6 +42,58 @@ add_filter('render_block_data', function ($parsed_block) {
 
     return $parsed_block;
 });
+
+add_filter( 'render_block_core/table', 'smn_comparative_table_badges', 10, 2 );
+function smn_comparative_table_badges( $block_content, $block ) {
+    $classes = preg_split( '/\s+/', $block['attrs']['className'] ?? '' );
+
+    if ( ! in_array( 'is-style-comparative-table', $classes, true ) ) {
+        return $block_content;
+    }
+
+    $document = new DOMDocument();
+    $previous_errors = libxml_use_internal_errors( true );
+    $loaded = $document->loadHTML( '<?xml encoding="utf-8" ?><div id="smn-comparative-table">' . $block_content . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
+    libxml_clear_errors();
+    libxml_use_internal_errors( $previous_errors );
+
+    if ( ! $loaded ) {
+        return $block_content;
+    }
+
+    $xpath = new DOMXPath( $document );
+    $cells = $xpath->query( '//tr[not(ancestor::thead)]/*[self::td or self::th][position() > 1]' );
+
+    foreach ( $cells as $cell ) {
+        if ( $cell->getElementsByTagName( '*' )->length ) {
+            continue;
+        }
+
+        $products = array_filter( array_map( 'trim', explode( ',', $cell->textContent ) ), static function ( $product ) {
+            return '' !== $product;
+        } );
+
+        if ( empty( $products ) ) {
+            continue;
+        }
+
+        $cell->textContent = '';
+
+        foreach ( $products as $product ) {
+            $badge = $document->createElement( 'span' );
+            $badge->setAttribute( 'class', 'is-style-badge' );
+            $badge->appendChild( $document->createTextNode( $product ) );
+            $cell->appendChild( $badge );
+        }
+    }
+
+    $output = '';
+    foreach ( $document->getElementById( 'smn-comparative-table' )->childNodes as $node ) {
+        $output .= $document->saveHTML( $node );
+    }
+
+    return $output;
+}
 
 add_action( 'pre_get_posts', 'smn_pre_get_posts' );
 function smn_pre_get_posts($query) {
@@ -194,4 +263,33 @@ add_filter('render_block', function ($block_content, $block) {
 
     return $matches[1] . $rank_math_breadcrumbs . $matches[3];
 }, 10, 2);
+
+// TEMPORAL: mantiene abierta la superposición móvil del menú para maquetarla. Poner a false o borrar al terminar.
+define( 'SMN_DEBUG_NAV_OVERLAY', false );
+
+function smn_force_nav_overlay_open( $block_content ) {
+    $processor = new WP_HTML_Tag_Processor( $block_content );
+
+    if ( ! $processor->next_tag( 'nav' ) || 'megamenu-toggler' !== $processor->get_attribute( 'id' ) ) {
+        return $block_content;
+    }
+
+    while ( $processor->next_tag( array( 'class_name' => 'wp-block-navigation__responsive-container' ) ) ) {
+        $processor->add_class( 'is-menu-open' );
+        $processor->add_class( 'has-modal-open' );
+        // Without these directives the Interactivity API can no longer remove the open classes.
+        $processor->remove_attribute( 'data-wp-class--is-menu-open' );
+        $processor->remove_attribute( 'data-wp-class--has-modal-open' );
+    }
+
+    return $processor->get_updated_html();
+}
+
+add_filter( 'render_block_core/navigation', function ( $block_content ) {
+    if ( ! SMN_DEBUG_NAV_OVERLAY || ! is_user_logged_in() ) {
+        return $block_content;
+    }
+
+    return smn_force_nav_overlay_open( $block_content );
+} );
 

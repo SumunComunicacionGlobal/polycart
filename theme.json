@@ -73,6 +73,11 @@
 					"name": "Background radial",
 					"slug": "background-radial",
 					"gradient": "radial-gradient(50% 50% at 50% 50%, var(--wp--preset--color--neutral-white) 0%, color-mix(in srgb, var(--wp--preset--color--neutral-20) 30%, transparent) 100%)"
+				},
+				{
+					"name": "Foreground fade",
+					"slug": "foreground-fade",
+					"gradient": "linear-gradient(to top, color-mix(in srgb, var(--wp--preset--color--foreground) 90%, transparent) 0%, color-mix(in srgb, var(--wp--preset--color--foreground) 0%, transparent) 100%)"
 				}
 			],
 			"link": true,
@@ -412,7 +417,7 @@
 				},
 				{
 					"name": "H3",
-					"size": "2rem",
+					"size": "clamp(1.75rem, 4vw, 2rem)",
 					"slug": "heading-3"
 				},
 				{
@@ -494,7 +499,7 @@
 			},
 			"core/navigation-link": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--small)"
+					"fontSize": "var(--wp--preset--font-size--body)"
 				}
 			},
 			"core/post-excerpt": {
@@ -563,13 +568,13 @@
 			"h5": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--heading-5)",
-					"fontWeight": "400"
+					"fontWeight": "500"
 				}
 			},
 			"h6": {
 				"typography": {
 					"fontSize": "var(--wp--preset--font-size--heading-6)",
-					"fontWeight": "400"
+					"fontWeight": "500"
 				}
 			},
 			"heading": {
@@ -580,7 +585,7 @@
 			},
 			"link": {
 				"color": {
-					"text": "var(--wp--preset--color--primary)"
+					"text": "var(--wp--preset--color--primary-100)"
 				},
 				"typography": {
 					"fontFamily": "var(--wp--preset--font-family--font-main)"
@@ -623,6 +628,11 @@
 			"area": "general",
 			"name": "related-posts",
 			"title": "Related Posts"
+		},
+		{
+			"area": "uncategorized",
+			"name": "product-menu",
+			"title": "Card producto megamenú"
 		}
 	]
 }

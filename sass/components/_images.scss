@@ -1,3 +1,5 @@
+@use '../abstracts/mixins' as *;
+
 img {
     max-width: 100%;
     height: auto;
@@ -32,4 +34,14 @@ img.img-white {
 
 .slick-slide .wp-block-image img {
     border-radius: var(--wp--custom--border-radius--1);
+}
+
+.img-hero-right-overflow {
+    position: absolute;
+    right: 0;
+    top: calc( 112px + 1vw );
+    right: 0;
+    z-index: 1;
+    margin-block-start: 0;
+    max-width: 45%;
 }

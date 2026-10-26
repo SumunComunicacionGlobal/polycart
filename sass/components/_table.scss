@@ -87,5 +87,11 @@
             border-left: 0;
         }
 	}
+
+	.is-style-badge {
+		font-size: var(--wp--preset--font-size--small);
+		margin-right: .5em;
+		text-transform: none;
+	}
 }
 

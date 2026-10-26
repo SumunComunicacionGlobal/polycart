@@ -27,10 +27,11 @@ function smn_render_product_card_meta_block( $attributes, $content, $block ) {
         return '';
     }
 
-    $keys = [
-        'volumen_litros'         => 'volume',
-        'carga_nominal_filtro' => 'weight',
-    ];
+    $keys = [ 'volumen_litros' => 'volume' ];
+
+    if ( empty( $GLOBALS['smn_rendering_menu_products_card'] ) ) {
+        $keys['carga_nominal_filtro'] = 'weight';
+    }
 
     $items = array();
 
@@ -68,7 +69,7 @@ function smn_render_product_card_meta_block( $attributes, $content, $block ) {
     // $post_id === $page_id solo en la ficha del propio producto; en las cards del loop difieren.
     $is_product_single = ( $post_id === $page_id );
 
-    if ( ! $is_product_single && PRODUCTOS_PAGE_ID != $page_id && have_rows( 'colores', $post_id ) ) {
+    if ( ! $is_product_single && PRODUCTOS_PAGE_ID != $page_id && have_rows( 'colores', $post_id ) && empty( $GLOBALS['smn_rendering_menu_products_card'] ) ) {
 
         $colores_ids = [];
 

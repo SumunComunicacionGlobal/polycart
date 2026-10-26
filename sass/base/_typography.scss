@@ -6,6 +6,10 @@
     line-height: var(--wp--custom--line-height--headings);
     font-family: var(--wp--preset--font-family--font-heading);
 }
+.has-heading-5-font-size,
+.has-heading-6-font-size {
+    font-weight: 500;
+}
 
 .has-medium-font-size {
     line-height: var(--wp--custom--line-height--headings);
@@ -45,7 +49,8 @@
         }
     }
 
-    .taxonomy-product_tag & {
+    .taxonomy-product_tag &,
+    &.has-primary-background-color {
         background-color: var(--wp--preset--color--primary);
 
         .badge-icon {
