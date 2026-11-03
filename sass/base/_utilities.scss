@@ -1,5 +1,22 @@
 @use '../abstracts/mixins' as *;
 
+/* Mostrar temporalmente todos los paneles del bloque tabs y todos los desplegables del bloque rank math faq */
+.single-product {
+    
+    .wp-block-smn-tab-content,
+    .rank-math-answer,
+    .wp-block-smn-tabs__container {
+        display: block !important;
+        max-height: none !important;
+        opacity: 1 !important;
+    }
+    .wp-block-smn-tab {
+        margin-top: var(--wp--preset--spacing--60) !important;
+        margin-bottom: var(--wp--preset--spacing--20) !important;
+    }
+}
+/****/
+
 a.stretched-link, .stretched-link > a {
     position: initial !important;
 
