@@ -31,6 +31,8 @@ function smn_render_menu_products_block( $attributes, $content, $block ) {
                 'posts_per_page' => -1,
                 'fields'         => 'ids',
                 'no_found_rows'  => true,
+                'orderby'        => 'menu_order',
+                'order'          => 'ASC',
                 'tax_query'      => array(
                     array(
                         'taxonomy' => 'product_cat',
