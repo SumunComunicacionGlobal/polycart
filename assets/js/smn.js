@@ -221,11 +221,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
-// Redirige a la página de gracias tras enviar un formulario con Contact Form 7
-document.addEventListener('wpcf7mailsent', function(event) {
-    window.location.href = '/gracias/';
-}, false);
-
 // Reproducir automáticamente los vídeos con etiqueta <video> al hacer scroll
 document.addEventListener('DOMContentLoaded', (event) => {
     const videos = document.querySelectorAll('video');
