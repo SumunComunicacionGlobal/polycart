@@ -8,6 +8,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $features = get_field( 'caracteristicas' );
+if ( $features ) {
+    $features = array_filter( $features, static function ( $feature ) {
+        return 'publish' === get_post_status( $feature );
+    } );
+}
+
 if ( $features ) :
 
     $display = ( get_field( 'mostrar_como' ) === 'cuadricula' ) ? '' : 'as-layout-stack';
