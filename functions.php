@@ -7,8 +7,13 @@
  * @package smn
  */
 
-define( 'PRODUCTOS_PAGE_ID', 50 );
-define( 'PRODUCT_DATA_ACF_GROUP_ID', 26 );
+define( 'PRODUCTOS_PAGE_ID', apply_filters( 'wpml_object_id', 50, 'page', true ) );
+define( 'PRODUCT_DATA_ACF_GROUP_ID', apply_filters( 'wpml_object_id', 26, 'acf-field-group', true ) );
+
+add_filter( 'option_rank_math_indexnow_log', 'smn_normalize_rank_math_indexnow_log' );
+function smn_normalize_rank_math_indexnow_log( $log ) {
+	return is_array( $log ) ? $log : array();
+}
 
 if ( ! function_exists( 'smn_styles' ) ) :
 
