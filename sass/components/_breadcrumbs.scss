@@ -3,11 +3,11 @@
 .wp-block-breadcrumbs {
     font-size: var(--wp--preset--font-size--small);
     text-transform: uppercase;
-    color: var(--wp--preset--color--foreground-medium);
-    font-weight: bold;
+    color: var(--wp--preset--color--neutral-50);
+    font-weight: 500;
 
     a {
         text-decoration: none;
-        color: var(--wp--preset--color--foreground-medium);
+        color: var(--wp--preset--color--neutral-50);
     }
 }
