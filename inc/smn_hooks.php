@@ -241,7 +241,36 @@ add_filter('render_block', function ($block_content, $block) {
 
 add_filter( 'rank_math/frontend/breadcrumb/items', 'smn_add_pages_to_rank_math_breadcrumb' );
 function smn_add_pages_to_rank_math_breadcrumb( $crumbs ) {
-    if ( ! is_page() || ! function_exists( 'get_field' ) || ! is_array( $crumbs ) || empty( $crumbs ) ) {
+    if ( ! is_array( $crumbs ) || empty( $crumbs ) ) {
+        return $crumbs;
+    }
+
+    if ( is_singular( 'product' ) && defined( 'PRODUCTOS_PAGE_ID' ) ) {
+        $products_page = get_post( absint( PRODUCTOS_PAGE_ID ) );
+        if ( $products_page && 'page' === $products_page->post_type && 'publish' === $products_page->post_status ) {
+            $link = get_permalink( $products_page );
+            $existing_links = array_column( $crumbs, 1 );
+
+            if ( $link && ! in_array( $link, $existing_links, true ) ) {
+                array_splice(
+                    $crumbs,
+                    1,
+                    0,
+                    array(
+                        array(
+                            get_the_title( $products_page ),
+                            $link,
+                            'hide_in_schema' => false,
+                        ),
+                    )
+                );
+            }
+        }
+
+        return $crumbs;
+    }
+
+    if ( ! is_page() || ! function_exists( 'get_field' ) ) {
         return $crumbs;
     }
 
