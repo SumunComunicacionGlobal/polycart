@@ -29,9 +29,9 @@ function smn_render_product_card_meta_block( $attributes, $content, $block ) {
 
     $keys = [ 'volumen_litros' => 'weight' ];
 
-    if ( empty( $GLOBALS['smn_rendering_menu_products_card'] ) ) {
-        $keys['carga_nominal_filtro'] = 'weight';
-    }
+    // if ( empty( $GLOBALS['smn_rendering_menu_products_card'] ) ) {
+    //     $keys['carga_nominal_filtro'] = 'weight';
+    // }
 
     $items = array();
 
