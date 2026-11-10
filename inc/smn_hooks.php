@@ -239,6 +239,46 @@ add_filter('render_block', function ($block_content, $block) {
     return $block_content;
 }, 10, 2);
 
+add_filter( 'rank_math/frontend/breadcrumb/items', 'smn_add_pages_to_rank_math_breadcrumb' );
+function smn_add_pages_to_rank_math_breadcrumb( $crumbs ) {
+    if ( ! is_page() || ! function_exists( 'get_field' ) || ! is_array( $crumbs ) || empty( $crumbs ) ) {
+        return $crumbs;
+    }
+
+    $page_ids = get_field( 'paginas_breadcrumbs', get_queried_object_id() );
+    if ( ! is_array( $page_ids ) || empty( $page_ids ) ) {
+        return $crumbs;
+    }
+
+    $existing_links = array_column( $crumbs, 1 );
+    $pages_to_insert = array();
+
+    foreach ( $page_ids as $page_id ) {
+        $page = get_post( absint( $page_id ) );
+        if ( ! $page || 'page' !== $page->post_type || 'publish' !== $page->post_status ) {
+            continue;
+        }
+
+        $link = get_permalink( $page );
+        if ( ! $link || in_array( $link, $existing_links, true ) ) {
+            continue;
+        }
+
+        $pages_to_insert[] = array(
+            get_the_title( $page ),
+            $link,
+            'hide_in_schema' => false,
+        );
+        $existing_links[] = $link;
+    }
+
+    if ( $pages_to_insert ) {
+        array_splice( $crumbs, 1, 0, $pages_to_insert );
+    }
+
+    return $crumbs;
+}
+
 // Sustituye el contenido del bloque nativo core/breadcrumbs por la miga de pan de Rank Math
 add_filter('render_block', function ($block_content, $block) {
     if (
@@ -292,4 +332,3 @@ add_filter( 'render_block_core/navigation', function ( $block_content ) {
 
     return smn_force_nav_overlay_open( $block_content );
 } );
-
