@@ -96,18 +96,31 @@ function smn_hybrid_setup() {
 	// Add support for Appearance Tools.
 	add_theme_support( 'appearance-tools' );
 
-
-	// Add excerpt to pages
-	add_post_type_support( 'page', 'excerpt' );
-	
 	// Custom excerpt length
 	function custom_excerpt_length( $length ) {
-		return 20; // Cambia este número al número de palabras que desees
+		return 55;
 	}
-	// add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
+	add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 }
 
 add_action( 'after_setup_theme', 'smn_hybrid_setup' );
+
+function smn_post_excerpt_length( $args, $block_name ) {
+	if ( 'core/post-excerpt' !== $block_name || ! is_callable( $args['render_callback'] ?? null ) ) {
+		return $args;
+	}
+
+	$render_callback = $args['render_callback'];
+	$args['render_callback'] = static function ( $attributes, $content, $block ) use ( $render_callback ) {
+		$post_id = $block->context['postId'] ?? 0;
+		$attributes['excerptLength'] = $post_id && has_excerpt( $post_id ) ? null : 55;
+
+		return $render_callback( $attributes, $content, $block );
+	};
+
+	return $args;
+}
+add_filter( 'register_block_type_args', 'smn_post_excerpt_length', 10, 2 );
 
 // Soporte para shortcodes en block template parts
 function render_shortcodes_in_blocks( $block_content ) {
