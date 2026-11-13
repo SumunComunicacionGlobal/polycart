@@ -127,3 +127,18 @@ function render_shortcodes_in_blocks( $block_content ) {
 	return do_shortcode( $block_content );
 }
 add_filter( 'render_block', 'render_shortcodes_in_blocks', 10, 2 );
+
+function smn_tab_label_to_heading( $block_content, $block ) {
+	if ( 'smn/tab' !== ( $block['blockName'] ?? '' ) ) {
+		return $block_content;
+	}
+
+	return preg_replace_callback(
+		'~<label\b([^>]*\sclass="[^"]*\bwp-block-smn-tab__label\b[^"]*"[^>]*)>(.*?)</label>~is',
+		static function ( $matches ) {
+			return '<h3' . $matches[1] . '>' . $matches[2] . '</h3>';
+		},
+		$block_content
+	);
+}
+add_filter( 'render_block', 'smn_tab_label_to_heading', 20, 2 );
