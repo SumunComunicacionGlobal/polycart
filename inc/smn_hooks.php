@@ -3,13 +3,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+function smn_get_published_page_by_slug( $slug ) {
+    $pages = get_posts(
+        array(
+            'post_type'        => 'page',
+            'post_status'      => 'publish',
+            'name'             => sanitize_title( $slug ),
+            'numberposts'      => 1,
+            'suppress_filters' => false,
+        )
+    );
+
+    return $pages ? $pages[0] : null;
+}
+
 add_filter( 'term_link', 'smn_product_cat_term_link_to_page', 10, 3 );
 function smn_product_cat_term_link_to_page( $term_link, $term, $taxonomy ) {
     if ( 'product_cat' !== $taxonomy || empty( $term->slug ) ) {
         return $term_link;
     }
 
-    $page = get_page_by_path( $term->slug, OBJECT, 'page' );
+    $page = smn_get_published_page_by_slug( $term->slug );
 
     if ( ! $page || 'publish' !== $page->post_status ) {
         return $term_link;
@@ -244,6 +258,32 @@ function smn_add_pages_to_rank_math_breadcrumb( $crumbs ) {
     if ( ! is_array( $crumbs ) || empty( $crumbs ) ) {
         return $crumbs;
     }
+
+    foreach ( $crumbs as &$crumb ) {
+        if ( empty( $crumb[1] ) ) {
+            continue;
+        }
+
+        $path = untrailingslashit( (string) wp_parse_url( $crumb[1], PHP_URL_PATH ) );
+        $slug = basename( $path );
+        $term = get_term_by( 'slug', $slug, 'product_cat' );
+
+        if ( ! $term ) {
+            continue;
+        }
+
+        $page = smn_get_published_page_by_slug( $term->slug );
+        if ( ! $page || 'publish' !== $page->post_status ) {
+            continue;
+        }
+
+        $page_link = get_permalink( $page );
+        if ( $page_link ) {
+            $crumb[0] = get_the_title( $page );
+            $crumb[1] = $page_link;
+        }
+    }
+    unset( $crumb );
 
     if ( is_singular( 'product' ) && defined( 'PRODUCTOS_PAGE_ID' ) ) {
         $products_page = get_post( absint( PRODUCTOS_PAGE_ID ) );
