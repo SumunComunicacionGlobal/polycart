@@ -128,7 +128,7 @@ while ( have_rows( 'variaciones_calculadora' ) ) :
         $transport_title = get_field( 'titulo_transporte' ) ?: __( 'Transporte', 'polycart' );
         $units_column = sprintf(
             '<div class="wp-block-column">
-            <div class="wp-block-group has-border-color has-neutral-30-border-color has-neutral-white-background-color has-background space-calculator__units"><p class="has-medium-font-size"><strong>%s</strong></p>%s</div>
+            <div class="wp-block-group has-border-color has-neutral-30-border-color has-neutral-white-background-color has-background space-calculator__units"><h3 class="wp-block-heading has-medium-font-size"><strong>%s</strong></h3>%s</div>
             </div>',
             esc_html( $transport_title ),
             $unit_rows
