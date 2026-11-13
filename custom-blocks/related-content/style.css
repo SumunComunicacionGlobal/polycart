@@ -1,3 +1,7 @@
+.related-content h2 {
+	max-width: 768px;
+}
+
 .related-content__grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));

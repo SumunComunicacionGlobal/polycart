@@ -7,6 +7,16 @@
  * @param WP_Block $block      Block instance.
  * @return string
  */
+function smn_related_content_card_title_to_h3( $card_markup ) {
+	return preg_replace_callback(
+		'~<h([1-6])\b(?=[^>]*\bclass="[^"]*\bwp-block-post-title\b[^"]*")([^>]*)>(.*?)</h\1>~is',
+		static function ( $matches ) {
+			return '<h3' . $matches[2] . '>' . $matches[3] . '</h3>';
+		},
+		$card_markup
+	);
+}
+
 function smn_render_related_content_block( $attributes, $content, $block ) {
 	$post_id   = isset( $block->context['postId'] ) ? (int) $block->context['postId'] : get_the_ID();
 	$post_type = isset( $block->context['postType'] ) ? $block->context['postType'] : get_post_type( $post_id );
@@ -34,7 +44,7 @@ function smn_render_related_content_block( $attributes, $content, $block ) {
 		'product' => array(
 			'taxonomy' => 'product_cat',
 			'badge'    => __( 'Productos', 'polycart' ),
-			'heading'  => __( 'Modelos relacionados', 'polycart' ),
+			'heading'  => __( 'Más equipamiento para supermercados que te podría interesar', 'polycart' ),
             'limit'    => 3,
 		),
 	);
@@ -140,6 +150,7 @@ function smn_render_related_content_block( $attributes, $content, $block ) {
 			$product_card = do_blocks(
 				'<!-- wp:template-part {"slug":"card-producto","theme":"polycart"} /-->'
 			);
+			$product_card = smn_related_content_card_title_to_h3( $product_card );
 
 			$items .= sprintf(
 				'<li class="wp-block-post related-content__item">%s</li>',
@@ -151,6 +162,7 @@ function smn_render_related_content_block( $attributes, $content, $block ) {
             $post_card = do_blocks(
                 '<!-- wp:template-part {"slug":"card-post","theme":"polycart"} /-->'
             );
+			$post_card = smn_related_content_card_title_to_h3( $post_card );
 
             $items .= sprintf(
                 '<li class="wp-block-post related-content__item">%s</li>',
@@ -166,7 +178,7 @@ function smn_render_related_content_block( $attributes, $content, $block ) {
 
 	$header = do_blocks(
 		sprintf(
-			'<!-- wp:paragraph {"className":"is-style-badge"} --><p class="is-style-badge">%1$s</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class="wp-block-heading">%2$s</h2><!-- /wp:heading -->',
+			'<!-- wp:paragraph {"className":"is-style-badge"} --><p class="is-style-badge">%1$s</p><!-- /wp:paragraph --><!-- wp:heading --><h2 class="wp-block-heading has-heading-3-font-size">%2$s</h2><!-- /wp:heading -->',
 			esc_html( $config[ $post_type ]['badge'] ),
 			esc_html( $config[ $post_type ]['heading'] )
 		)
