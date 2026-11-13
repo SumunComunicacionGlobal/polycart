@@ -175,6 +175,7 @@ body {
     &__item {
         display: flex;
         justify-content: space-between;
+        align-items: flex-end;
         gap: var(--wp--custom--layout--gap-small);
         padding-bottom: .25rem;
         border-bottom: 1px solid var(--wp--preset--color--neutral-30);
