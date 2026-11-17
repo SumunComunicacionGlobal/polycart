@@ -47,6 +47,14 @@ textarea {
 
 textarea {
 	border-radius: var(--wp--custom--border-radius--1);
+	width: 100%;
+
+	&:not(.wpcf7-textarea) {
+		font-size: var(--wp--preset--font-size--small);
+		min-height: 100px;
+		color: var(--wp--preset--color--text-medium);
+	}
+
 }
 
 select {
@@ -58,10 +66,6 @@ select {
 	background-repeat: no-repeat;
 	background-position: right 4px center;
 	background-size: 16px;
-}
-
-textarea {
-	width: 100%;
 }
 
 button[type="submit"], input[type="submit"] {
