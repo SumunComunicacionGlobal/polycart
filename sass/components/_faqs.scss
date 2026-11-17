@@ -47,17 +47,17 @@
         }
 
         .rank-math-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .4s ease-in-out;
+            // max-height: 0;
+            // overflow: hidden;
+            // transition: max-height .4s ease-in-out;
             color: var(--wp--preset--color--text-medium);
         }
 
         &.active {
 
-            .rank-math-answer {
-                max-height: 100vh;
-            }
+            // .rank-math-answer {
+            //     max-height: 100vh;
+            // }
     
             .rank-math-question::after {
                 mask-image: url(./assets/icons/minus.svg);
