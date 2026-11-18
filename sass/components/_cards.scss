@@ -321,6 +321,12 @@
         font-size: var(--wp--preset--font-size--small);
     }
 
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--wp--custom--layout--gap-small);
+    }
+
     &__tag {
         display: flex;
         flex-wrap: nowrap;
